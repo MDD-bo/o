@@ -6,19 +6,18 @@
 
 <script>
 
-function getParam(name){
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
-
 function openObsidian(){
 
-  const url = getParam("url");
+  // obtiene todo lo que viene después del dominio
+  let path = window.location.pathname.substring(1);
 
-  if(!url){
-    document.body.innerHTML = "<h2>No se recibió ningún enlace de Obsidian</h2>";
+  if(!path){
+    document.body.innerHTML = "<h2>No se recibió ningún enlace</h2>";
     return;
   }
+
+  // reconstruye la URL
+  let url = decodeURIComponent(path);
 
   if(!url.startsWith("obsidian://")){
     document.body.innerHTML = "<h2>El enlace no es válido</h2>";
