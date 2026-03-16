@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Open Obsidian Link</title>
+
+<script>
+
+function openObsidian(){
+
+  // obtiene todo lo que viene después del dominio
+  let path = window.location.pathname.substring(1);
+
+  if(!path){
+    document.body.innerHTML = "<h2>No se recibió ningún enlace</h2>";
+    return;
+  }
+
+  // reconstruye la URL
+  let url = decodeURIComponent(path);
+
+  if(!url.startsWith("obsidian://")){
+    document.body.innerHTML = "<h2>El enlace no es válido</h2>";
+    return;
+  }
+
+  window.location.href = url;
+
+}
+
+window.onload = openObsidian;
+
+</script>
+
+</head>
+
+<body style="font-family:Arial;text-align:center;margin-top:80px">
+
+<h2>Abriendo Obsidian...</h2>
+
+</body>
+</html>
