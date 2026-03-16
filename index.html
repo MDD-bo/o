@@ -8,14 +8,16 @@
 
 function openObsidian(){
 
-  let path = window.location.pathname;
+  // obtiene todo lo que viene después del dominio
+  let path = window.location.pathname.substring(1);
 
-  // quitar el prefijo del repositorio
-  path = path.replace("/open-obsidian/","");
+  if(!path){
+    document.body.innerHTML = "<h2>No se recibió ningún enlace</h2>";
+    return;
+  }
 
-  let query = window.location.search;
-
-  let url = decodeURIComponent(path + query);
+  // reconstruye la URL
+  let url = decodeURIComponent(path);
 
   if(!url.startsWith("obsidian://")){
     document.body.innerHTML = "<h2>El enlace no es válido</h2>";
